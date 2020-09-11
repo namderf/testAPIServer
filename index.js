@@ -40,9 +40,20 @@ var returnJSON =function(req, res, next){
 	if (confs[endpoint]){
 		let config = confs[endpoint];
 		for (let prop in config){
-			if (Array.isArray(config[prop])	&& prop in jsons[endpoint]){
+			propSplit=prop.split('[');
+			propId = propSplit[0];
+			if (propSplit[1]){
+				propIndex=propSplit[1].slice(0,-1);
+			}			
+			if (Array.isArray(config[prop])	&& propId in jsons[endpoint]){
 				let index = count[endpoint]%config[prop].length;
-				jsons[endpoint][prop]=config[prop][index];
+				if (propSplit[1]){
+					jsons[endpoint][propId][propIndex]=config[prop][index];
+				}
+				else{
+					jsons[endpoint][propId]=config[prop][index];	
+				}
+				
 			}
 		}
 	}

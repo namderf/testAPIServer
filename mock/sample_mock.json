@@ -1,2 +1,3 @@
 {"TestKey":"Testvalue",
-"AnotherKey":"AnotherValue"}
+"AnotherKey":"AnotherValue",
+"ArrayTest": [1,2,3,4,5]}
