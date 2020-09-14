@@ -1,0 +1,16 @@
+{"TestKey":"Testvalue",
+"AnotherKey":"AnotherValue",
+"ArrayTest": [1,2,3,4,5],
+"ObjectTest": {
+	"FirstObjectKey": "FOValue",
+	"SecondObjectKey": "SOValue"
+},
+"ObjectArrayTest": [
+	{"FirstObject": "FOValue"},
+	{"SecondObject": "SOValue"}
+],
+"ObjectDoubleArrayTest": [
+	{"FirstObjectArray": ["Value1","Value2"]},
+	{"SecondObjectArray": ["Value1", "Value2"]}
+]
+}

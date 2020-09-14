@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var fs = require("fs");
+var utils = require("./util/json_utils");
 
 var app= express();
 const dirPath = path.join (__dirname, 'mock');
@@ -40,21 +41,8 @@ var returnJSON =function(req, res, next){
 	if (confs[endpoint]){
 		let config = confs[endpoint];
 		for (let prop in config){
-			propSplit=prop.split('[');
-			propId = propSplit[0];
-			if (propSplit[1]){
-				propIndex=propSplit[1].slice(0,-1);
-			}			
-			if (Array.isArray(config[prop])	&& propId in jsons[endpoint]){
-				let index = count[endpoint]%config[prop].length;
-				if (propSplit[1]){
-					jsons[endpoint][propId][propIndex]=config[prop][index];
-				}
-				else{
-					jsons[endpoint][propId]=config[prop][index];	
-				}
-				
-			}
+			let index = count[endpoint]%config[prop].length;
+			jsons[endpoint] = utils.setJSONValue(jsons[endpoint],prop,config[prop][index]);
 		}
 	}
 	req.returnJSON=jsons[endpoint];
